@@ -1,0 +1,45 @@
+%%
+%% This is file `bare_thesis.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% install/buptgraduatethesis.dtx  (with options: `bare-thesis')
+%% 
+%% This file is a part of the example of BUPTGraduateThesis.
+%% 
+
+
+\documentclass{BUPTthesis}
+\addbibresource{bare_thesis.bib}
+
+\newcommand{\gls}[1]{#1}
+\input{metadata}
+
+\begin{document}
+
+\maketitle
+\frontmatter                            % only in book class (roman page #s)
+\include{abstract}
+
+\cleardoublepage
+\tableofcontents
+\cleardoublepage
+\listoffigures
+\cleardoublepage
+\listoftables
+\include{notations}
+
+\mainmatter
+\include{ch_intro}
+\include{ch_concln}
+
+\appendix
+\include{app_lhospital}
+\backmatter
+\include{thanks}
+% %% 在读期间论文发表情况
+\include{pubs}
+% \printbibliography
+
+\end{document}

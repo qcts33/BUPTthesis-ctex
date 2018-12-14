@@ -1,0 +1,51 @@
+%%
+%% This is file `example/app_lhospital.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% install/buptgraduatethesis.dtx  (with options: `app-lhospital')
+%% 
+%% This file is a part of the example of BUPTGraduateThesis.
+%% 
+
+\chapter{不定型（$0/0$）极限的计算}
+\begin{theorem}[L'Hospital法则]
+  若
+  \begin{enumerate}
+  \item 当 $x \to a$ 时，函数 $f(x)$ 和 $g(x)$ 都趋于零；
+  \item 在点 $a$ 某去心邻域内，$f'(x)$ 和 $g'(x)$ 都存在，且 $g'(x)\not= 0$；
+  \item $\displaystyle\lim_{x \to a} \dfrac{f'(x)}{g'(x)}$ 存在（或为无穷大），
+  \end{enumerate}
+  那么
+  \begin{align}
+    \label{eq:app:lhospital}
+    \lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}.
+  \end{align}
+\end{theorem}
+\begin{proof}
+  以下只证明两函数 $f(x)$ 和 $g(x)$ 在 $x = a$ 为光滑函数的情形。
+  由于 $f(a) = g(a) = 0$，原极限可以重写为
+  \begin{align*}
+    \lim_{x \to a} \frac{f(x) - f(a)}{g(x) - g(a)}.
+  \end{align*}
+  对分子分母同时除以 $(x - a)$，得到
+  \begin{align*}
+    \lim_{x \to a} \frac{%
+      \dfrac{f(x) - f(a)}{x - a}
+    }{%
+      \dfrac{g(x) - g(a)}{x - a}
+    } &
+    = \frac{%
+      \displaystyle\lim_{x \to a} \frac{f(x) - f(a)}{x - a}
+    }{%
+      \displaystyle\lim_{x \to a} \frac{g(x) - g(a)}{x - a}
+    }.
+  \end{align*}
+  分子分母各得一差商极限，即函数 $f(x)$ 和 $g(x)$ 分别在 $x = a$ 处的导数
+  \begin{align*}
+    \lim_{x \to a} \frac{f(x)}{g(x)} &
+    = \frac{f'(a)}{g'(a)}.
+  \end{align*}
+  由光滑函数的导函数必为一光滑函数，故 \eqref{eq:app:lhospital} 得证。
+\end{proof}
