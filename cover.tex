@@ -1,0 +1,162 @@
+\newcommand{\bupt@hide}[1]{#1}
+\newcommand{\makechinesetitle}{%
+  \cleardoublepage
+  \pagestyle{empty}
+  % 密级 保密期限
+  \begin{flushright}
+    \bupt@label@classlevel
+    \bupt@title@sep
+    \hspace*{4em}
+    \bupt@label@classdur
+    \bupt@title@sep
+    \hspace*{4em}
+  \end{flushright}
+  % logo
+  \begin{center}
+    \vspace{1.71cm}
+    \includegraphics[width=11.6cm]{logo/buptname}\par
+    \vspace{0.54cm}
+    \fontsize{32pt}{\baselineskip}\selectfont\heiti
+    \bupt@label@covertitle\par
+    \vspace{1.55cm}
+    \includegraphics[width=3.09cm]{logo/buptseal}
+  \end{center}
+  \newlength\bupt@titlewidth
+  % title
+  \vspace{1cm}
+  \begin{center}
+    \zihao{-2}
+    \settowidth{\bupt@titlewidth}{\bupt@meta@ctitle}
+    % \setlength{\extrarowheight}{10mm}
+    \setlength{\arrayrulewidth}{0.5bp}
+    \begin{tabular}{@{}p{36bp}@{\bupt@title@sep}p{95mm}@{}}
+      \bupt@label@ctitle & %
+      \parbox[t]{95mm}{%
+        \centering%
+        \newcommand\titlebreak{\\\global\let\bupt@long@title\@empty}
+        \rule[-5bp]{95mm}{0.5bp}\\[-27bp]
+        \bupt@meta@ctitle%
+      }%
+      \\%
+      \ifx\bupt@long@title\@empty
+        \cline{2-2}
+      \else
+        \ifdim\bupt@titlewidth>95mm
+        \cline{2-2}
+        \fi
+      \fi
+    \end{tabular}
+  \end{center}
+  \vspace{0.5cm}
+  \begin{center}
+    \zihao{4}
+    \setlength\extrarowheight{5pt}
+    \begin{tabular}{lc}
+      \bupt@label@studentid\bupt@title@sep & {\iftoggle{review}{\hfill}{\bupt@meta@studentid}} \\
+      \cline{2-2}
+      \bupt@label@cauthor\bupt@title@sep & {\iftoggle{review}{\hfill}{\bupt@meta@cauthor}} \\
+      \cline{2-2}
+      \bupt@label@cmajor\bupt@title@sep & {\bupt@meta@cmajor} \\
+      \cline{2-2}
+      \bupt@label@csupervisor\bupt@title@sep & {\iftoggle{review}{\hfill}{\bupt@meta@csupervisor}} \\
+      \cline{2-2}
+      \bupt@label@cdepartment\bupt@title@sep & {\bupt@meta@cdepartment} \\
+      \cline{2-2}
+    \end{tabular}
+  \end{center}
+  \vspace{0.5cm}
+  \begin{center}
+    \zihao{4}
+    \bupt@meta@cdate
+  \end{center}
+}
+
+\newcommand{\makeenglishtitle}{%
+  \cleardoublepage
+  \begin{center}
+    \vspace{2cm}
+    \includegraphics[width=14cm]{logo/buptname_en}\par
+    \vspace{1cm}
+    \zihao{1}\heiti\bupt@label@ecovertitle\par
+    \vspace{1cm}
+    \includegraphics[width=3.09cm]{logo/buptseal}
+  \end{center}
+  % \vspace{0.5cm}
+  \begin{center}
+    \zihao{1}
+    {Title:\par}
+    {\bfseries
+    \sffamily
+    \MakeUppercase
+    \bupt@meta@etitle}
+  \end{center}
+  \vspace{1.5cm}
+  \begin{center}
+    \zihao{4}
+    \begin{tabular}{rc}
+      \bupt@label@estudentid\bupt@title@esep & {\hfill\iftoggle{review}{\hfill}{\bupt@meta@studentid}\hfill} \\
+      \cline{2-2}
+      \bupt@label@eauthor\bupt@title@esep & {\hfill\iftoggle{review}{\hfill}{\bupt@meta@eauthor}\hfill} \\
+       \cline{2-2} 
+      \bupt@label@emajor\bupt@title@esep & {\hfill\bupt@meta@emajor\hfill} \\
+      \cline{2-2} 
+      \bupt@label@esupervisor\bupt@title@esep & {\hfill\iftoggle{review}{\hfill}{\bupt@meta@esupervisor}\hfill} \\
+      \cline{2-2} 
+      \bupt@label@edepartment\bupt@title@esep & {\hfill\bupt@meta@edepartment\hfill} \\
+      \cline{2-2} 
+    \end{tabular}
+  \end{center}
+  \vspace{0.5cm}
+  \begin{center}
+    \zihao{4}
+    \bupt@meta@edate
+  \end{center}
+}
+
+\newcommand{\makedeclaration}{\bupt@makedeclauth}
+\newcommand\bupt@underline[2][6em]{%
+  \hskip1pt\underline{\hb@xt@ #1{\hss#2\hss}}\hskip3pt%
+}
+%% 独创性声明与授权说明
+\newcommand{\bupt@declaration}{%
+  \begin{center}
+    \zihao{4}\bupt@declaration@title
+  \end{center}
+  \par{%
+    \bupt@declaration@body
+  }
+  \vskip1.2cm
+  \begin{center}
+    \setlength\extrarowheight{5pt}
+      \begin{tabular}{lp{38mm}p{5mm}lp{38mm}}
+        \bupt@label@authorsigniture & & & \bupt@label@date&\\
+        \cline{2-2} \cline{5-5}
+      \end{tabular}
+  \end{center}
+}
+\newcommand{\bupt@authorization}{%
+  \begin{center}
+    \zihao{4}\bupt@authorization@title
+  \end{center}
+  \par{%
+    \bupt@authorization@body
+  }
+  \vskip1.2cm
+  \begin{center}
+    \setlength\extrarowheight{5pt}
+      \begin{tabular}{lp{38mm}p{5mm}lp{38mm}}
+        \bupt@label@authorsigniture & & & \bupt@label@date&\\
+        \cline{2-2} \cline{5-5}
+        \bupt@label@supervisorsigniture & & & \bupt@label@date&\\
+        \cline{2-2} \cline{5-5}
+      \end{tabular}
+  \end{center}
+}
+\newcommand{\bupt@makedeclauth}{%
+  \cleardoublepage
+  \vfill
+  \bupt@declaration
+  \vfill
+  \bupt@authorization
+  \vfill
+}
