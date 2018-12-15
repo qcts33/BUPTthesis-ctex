@@ -10,7 +10,7 @@
 %% 
 
 
-\documentclass{BUPTthesis}
+\documentclass[chapterbib]{BUPTthesis}
 \addbibresource{bare_thesis.bib}
 
 \newcommand{\gls}[1]{#1}
@@ -34,12 +34,13 @@
 \include{ch_intro}
 \include{ch_concln}
 
+\nottoggle{chapterbib}{\printbibliography}{}
+
 \appendix
 \include{app_lhospital}
 \backmatter
 \include{thanks}
 % %% 在读期间论文发表情况
 \include{pubs}
-% \printbibliography
 
 \end{document}

@@ -42,4 +42,4 @@
 
 测试所有参考文献类型\cite{CITATION_BOOK,CITATION_ARTICLE,CITATION_PROCEEDINGS,CITATION_INPROCEEDINGS,CITATION_TECHREPORT,CITATION_STANDARD,CITATION_PATENT,CITATION_NEWSPAPER,CITATION_ELECTRONIC}。
 
-\printbibliography[heading=subbibliography]
+\iftoggle{chapterbib}{\printbibliography[heading=subbibliography]}{}

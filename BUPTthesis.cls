@@ -6,6 +6,8 @@
 \DeclareOption{txmath}{\toggletrue{txmath}}
 \newtoggle{review}
 \DeclareOption{review}{\toggletrue{review}}
+\newtoggle{chapterbib}
+\DeclareOption{chapterbib}{\toggletrue{chapterbib}}
 % \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions
 
@@ -48,7 +50,6 @@
 
 
 % Load packages
-\RequirePackage[backend=biber,style=gb7714-2015,refsection=chapter]{biblatex}
 \RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm}
 \RequirePackage{newtxtext}
 \iftoggle{txmath}{\RequirePackage{newtxmath}}{}
@@ -58,6 +59,10 @@
 \RequirePackage{siunitx}
 \RequirePackage{algorithm, algorithmicx}
 \RequirePackage{longtable}
+
+% biblatex
+\iftoggle{chapterbib}{\PassOptionsToPackage{refsection=chapter}{biblatex}}{}
+\RequirePackage[backend=biber,style=gb7714-2015]{biblatex}
 
 % hyperref
 \AtBeginDocument{
