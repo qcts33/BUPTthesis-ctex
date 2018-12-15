@@ -62,7 +62,16 @@
 
 % biblatex
 \iftoggle{chapterbib}{\PassOptionsToPackage{refsection=chapter}{biblatex}}{}
-\RequirePackage[backend=biber,style=gb7714-2015]{biblatex}
+\RequirePackage[backend=biber,style=gb7714-2015,gbnamefmt=lowercase,doi=false]{biblatex}
+\iftoggle{chapterbib}
+{%
+  \newcommand{\chapterbib}{\printbibliography[heading=subbibliography]}
+  \newcommand{\mainbib}{\relax}
+}
+{%
+  \newcommand{\chapterbib}{\relax}
+  \newcommand{\mainbib}{\printbibliography}
+}
 
 % hyperref
 \AtBeginDocument{
@@ -118,8 +127,6 @@
   \fancyhead[CO]{\zihao{-5}\leftmark}
   \fancyfoot[C]{\zihao{5}\thepage}
 }
-% use heading in the start page of chapter by remove \thispagestyle
-% \preto\maketitle{\pagestyle{empty}}
 \appto\frontmatter{\pagestyle{main}\pagenumbering{roman}}
 \appto\mainmatter{\pagestyle{main}\pagenumbering{arabic}}
 
@@ -139,19 +146,24 @@
 }
 
 % draw front pages
-\IfFileExists{cover.pdf}
-{%
-	\RequirePackage{pdfpages}
-	\renewcommand\maketitle{\includepdf[pages=-]{cover.pdf}}
-}
+\newtoggle{addcover}
+\IfFileExists{cover.tex}
 {%
 	\input{cover.tex}
 	\renewcommand\maketitle{%
 	 \makechinesetitle
 	 \makeenglishtitle
 	 \makedeclaration
-	}
-}
+  }
+  \toggletrue{addcover}
+}{}
+\IfFileExists{cover.pdf}
+{%
+	\RequirePackage{pdfpages}
+  \renewcommand\maketitle{\includepdf[pages=-]{cover.pdf}}
+  \toggletrue{addcover}
+}{}
+\nottoggle{addcover}{\renewcommand{\maketitle}{\relax}}{}
 
 % 中英文摘要+关键词
 \newenvironment{cabstract}
