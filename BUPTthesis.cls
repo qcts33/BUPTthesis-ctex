@@ -87,14 +87,7 @@
 \RequirePackage{hyperref}
 
 % config page
-\RequirePackage{geometry}
-\geometry{
-  paper      = a4paper,
-  top        = 25mm,
-  bottom     = 25mm,
-  left       = 22.5mm,
-  right      = 22.5mm,
-}
+\RequirePackage[paper=a4paper,total={155mm,230mm},includehead,hcentering]{geometry}
 
 % config toc lof lot
 \RequirePackage{tocloft}
