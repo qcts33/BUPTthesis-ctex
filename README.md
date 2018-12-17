@@ -36,7 +36,10 @@ latexmk -pdfxe -synctex=1 %DOC%
 
 ## 数学字体
 
-不知是我系统的问题还是`newtx`包存在问题，我这里调用`newtxmath`之后就有部分数学符号无法使用。现在暂时采用LaTeX默认的cm数学字体。不过不管用什么数学字体，LaTeX的数学排版肯定比Word强。另外本文档类提供一个`txmath`选项来开启`newtxmath`的调用。
+~~不知是我系统的问题还是`newtx`包存在问题，我这里调用`newtxmath`之后就有部分数学符号无法使用。现在暂时采用LaTeX默认的cm数学字体。不过不管用什么数学字体，LaTeX的数学排版肯定比Word强。另外本文档类提供一个`txmath`选项来开启`newtxmath`的调用。~~
+
+发现问题我的系统里少一个叫`boondox`的字体包，手动安装之后便可以正常编译`newtxmath`了。
+如果有遇到相似问题的可以尝试一下。
 
 ## 引文格式
 
@@ -51,7 +54,7 @@ latexmk -pdfxe -synctex=1 %DOC%
 
 ## 自动缩略语
 
-`BUPTGraduateThesis`中实现了非常强大的自动缩略语功能，但是我在移植过程中发现自动缩略语所依赖`glossaries`包似乎跟`biblatex`由冲突。由于时间紧迫，未能查明具体原因。暂时放弃实现相应的功能，现在只能手动管理缩略语了。
+`BUPTGraduateThesis`中实现了非常强大的自动缩略语功能，但是我在移植过程中发现自动缩略语所依赖`glossaries`包似乎跟`biblatex`冲突。由于时间紧迫，未能查明具体原因。暂时放弃实现相应的功能，现在只能手动管理缩略语了。
 
 ## 功能缺乏
 
