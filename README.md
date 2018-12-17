@@ -20,6 +20,13 @@
 ```
 latexmk -pdfxe -synctex=1 %DOC%
 ```
+或者对于texlive，可以直接使用
+```
+xelatex %DOC%
+biber %DOC%
+xelatex %DOC%
+xelatex %DOC%
+```
 
 ## 选项
 
@@ -46,6 +53,8 @@ latexmk -pdfxe -synctex=1 %DOC%
 虽然《关于研究生学位论文格式的统一要求》里面没有明确说明，但是格式要求是基本符合[国家标准](https://zh.wikipedia.org/wiki/%E6%96%87%E5%90%8E%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%E8%91%97%E5%BD%95%E8%A7%84%E5%88%99)的。
 所以本项目采用[biblatex-gb7714-2015](https://www.ctan.org/pkg/biblatex-gb7714-2015)来处理引文格式。
 但由于该包没有在以前的文档类中使用过，并不清楚学校对该包的接受度如何。
+
+如果编译时出现```Package xkeyval Error: `gbnamefmt' undefined in families `blx@opt@pre`. [\blx@processoptions]``` 请更新biblatex-gb7714-2015的版本。
 
 ## 注脚
 
