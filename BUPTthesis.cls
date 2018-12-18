@@ -158,6 +158,69 @@
 }{}
 \nottoggle{addcover}{\renewcommand{\maketitle}{\relax}}{}
 
+
+\RequirePackage[automake,abbreviations,toc]{glossaries-extra}
+\renewcommand{\abbreviationsname}{\bupt@label@abbreviations}
+%ugly hack
+\renewcommand*{\glsxtruserparen}[2]{%
+    \glsxtrfullsep{#2}%
+    \glsxtrparen
+    {\glsaccessdesc{#2}, #1}%
+  }
+\newabbreviationstyle{bupt-long-short-desc}
+{
+  \GlsXtrUseAbbrStyleSetup{long-short-desc}
+}
+{
+  \GlsXtrUseAbbrStyleFmts{long-short-desc}
+  \renewcommand*{\glsxtrfullformat}[2]{%
+    \glsfirstlongfont{\glsaccesslong{##1}\ifglsxtrinsertinside##2\fi}%
+    \ifglsxtrinsertinside\else##2\fi
+    \glsxtrfullsep{##1}%
+    \glsxtrparen{\glsaccessdesc{##1}, \glsfirstabbrvfont{\glsaccessshort{##1}}}%
+  }%
+  \renewcommand*{\glsxtrfullplformat}[2]{%
+    \glsfirstlongfont{\glsaccesslongpl{##1}\ifglsxtrinsertinside##2\fi}%
+    \ifglsxtrinsertinside\else##2\fi\glsxtrfullsep{##1}%
+    \glsxtrparen{\glsaccessdescplural{##1}, \glsfirstabbrvfont{\glsaccessshortpl{##1}}}%
+  }%
+  \renewcommand*{\Glsxtrfullformat}[2]{%
+    \glsfirstlongfont{\Glsaccesslong{##1}\ifglsxtrinsertinside##2\fi}%
+    \ifglsxtrinsertinside\else##2\fi\glsxtrfullsep{##1}%
+    \glsxtrparen{\Glsaccessdesc{##1}, \glsfirstabbrvfont{\glsaccessshort{##1}}}%
+  }%
+  \renewcommand*{\Glsxtrfullplformat}[2]{%
+    \glsfirstlongfont{\Glsaccesslongpl{##1}\ifglsxtrinsertinside##2\fi}%
+    \ifglsxtrinsertinside\else##2\fi\glsxtrfullsep{##1}%
+    \glsxtrparen{\Glsaccessdescplural{##1}, \glsfirstabbrvfont{\glsaccessshortpl{##1}}}%
+  }%
+}
+\setabbreviationstyle{bupt-long-short-desc}
+\newglossarystyle{ipa}
+{%
+	% longtable with three columns:
+	\renewenvironment{theglossary}%
+     {\begin{longtable}{p{2cm}p{8cm}p{\glsdescwidth}}}	{\end{longtable}}%
+	% no header:
+	\renewcommand*{\glossaryheader}{%
+		\bfseries 缩略词 & \bfseries 英文全称 &
+		\bfseries 中文全称
+		\\\endhead}%
+	% no group headings:
+	\renewcommand*{\glsgroupheading}[1]{}%
+	% main (level 0) entries displayed in a row
+  \renewcommand{\glossentry}[2]{%
+    \glsentryitem{##1}\glstarget{##1}{{\glsaccessshort{##1}}}%
+    & {\glsaccessdesc{##1}}%
+    & {\glsaccesslong{##1}}%
+  \tabularnewline
+}%
+	% sub-entries (same as main)
+	\renewcommand{\subglossentry}[3]{\glossentry{##2}{##3}}%
+	\renewcommand*{\glsgroupskip}{}%
+}
+\setglossarystyle{ipa}
+
 % 中英文摘要+关键词
 \newenvironment{cabstract}
 {%

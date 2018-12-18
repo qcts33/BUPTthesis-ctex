@@ -266,6 +266,9 @@ TSWLatexianTemp*
 ### LaTeX Patch ###
 # glossaries
 *.glstex
+*.gls-abr
+*.glo-abr
+*.glg-abr
 
 ### VisualStudioCode ###
 .vscode/*

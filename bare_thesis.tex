@@ -13,9 +13,10 @@
 \documentclass[chapterbib,txmath]{BUPTthesis}
 \addbibresource{bare_thesis.bib}
 
-\newcommand{\gls}[1]{#1}
+% \newcommand{\gls}[1]{#1}
 \input{metadata}
-
+\input{abbreviation}
+\makeglossaries
 \begin{document}
 
 \maketitle
@@ -37,6 +38,8 @@
 \mainbib
 
 \appendix
+% \printglossary[type=\glsxtrabbrvtype]
+\printabbreviations
 \include{app_lhospital}
 \backmatter
 \include{thanks}
