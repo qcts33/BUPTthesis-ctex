@@ -28,6 +28,12 @@ xelatex %DOC%
 xelatex %DOC%
 ```
 
+## Overleaf在线编译
+
+现在本项目已经能在Overleaf上直接使用了，由于Adobe宋体的逗号和Windows自带宋体逗号有较大差异，为了最大可能减少问题的出现，故使用了Windows自带字体。
+
+[Overleaf模板地址](https://www.overleaf.com/latex/templates/beijing-university-of-posts-and-telecommunications-master-slash-phd-thesis-template/dkpkvpsvvhpg)
+
 ## 选项
 
 - `txmath` 默认采用cm数学字体，可使用该选项启用Times字体的数学部分。
