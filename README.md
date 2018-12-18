@@ -20,7 +20,7 @@
 ```
 latexmk -pdfxe -synctex=1 %DOC%
 ```
-或者对于texlive，可以直接使用
+或者可以直接使用
 ```
 xelatex %DOC%
 biber %DOC%
