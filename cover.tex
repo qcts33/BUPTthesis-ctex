@@ -5,6 +5,7 @@
   % 密级 保密期限
   \begin{flushright}
     \zihao{4}
+    \bsong
     \bupt@label@classlevel
     \bupt@title@sep
     \hspace*{4em}
@@ -27,30 +28,16 @@
   \vspace{1cm}
   \begin{center}
     \zihao{-2}
-    \settowidth{\bupt@titlewidth}{\bupt@meta@ctitle}
-    % \setlength{\extrarowheight}{10mm}
-    \setlength{\arrayrulewidth}{0.5bp}
-    \begin{tabular}{@{}p{36bp}@{\bupt@title@sep}p{95mm}@{}}
-      \bupt@label@ctitle & %
-      \parbox[t]{95mm}{%
-        \centering%
-        \newcommand\titlebreak{\\\global\let\bupt@long@title\@empty}
-        \rule[-5bp]{95mm}{0.5bp}\\[-27bp]
-        \bupt@meta@ctitle%
-      }%
-      \\%
-      \ifx\bupt@long@title\@empty
-        \cline{2-2}
-      \else
-        \ifdim\bupt@titlewidth>95mm
-        \cline{2-2}
-        \fi
-      \fi
-    \end{tabular}
+    \bsong
+    \bupt@label@ctitle\bupt@title@sep
+    \begin{minipage}[t]{14\ccwd}
+        \uline{\bupt@meta@ctitle\hfill}
+    \end{minipage}
   \end{center}
   \vspace{0.5cm}
   \begin{center}
     \zihao{4}
+    \bsong
     \setlength\extrarowheight{5pt}
     \begin{tabular}{lc}
       \bupt@label@studentid\bupt@title@sep & {\iftoggle{review}{\hfill}{\bupt@meta@studentid}} \\
@@ -78,7 +65,7 @@
     \vspace{2cm}
     \includegraphics[width=14cm]{logo/buptname_en}\par
     \vspace{0.5cm}
-    \zihao{1}\heiti\bupt@label@ecovertitle\par
+    \zihao{1}\sffamily\bupt@label@ecovertitle\par
     \vspace{0.5cm}
     \includegraphics[width=3.09cm]{logo/buptseal}
   \end{center}
@@ -86,13 +73,13 @@
   \begin{center}
     \zihao{1}
     {\bfseries
-    \sffamily
     \MakeUppercase
     \bupt@meta@etitle}
   \end{center}
   \vspace{1.5cm}
   \begin{center}
     \zihao{4}
+    \bfseries
     \begin{tabular}{rc}
       \bupt@label@estudentid\bupt@title@esep & {\hfill\iftoggle{review}{\hfill}{\bupt@meta@studentid}\hfill} \\
       \cline{2-2}

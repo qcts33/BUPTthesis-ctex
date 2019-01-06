@@ -59,6 +59,7 @@
 \RequirePackage{siunitx}
 \RequirePackage{algorithm, algorithmicx}
 \RequirePackage{longtable}
+\RequirePackage{ulem}
 
 % biblatex
 \iftoggle{chapterbib}{\PassOptionsToPackage{refsection=chapter}{biblatex}}{}
@@ -140,6 +141,12 @@
 
 % draw front pages
 \newtoggle{addcover}
+\IfFileExists{bsong.ttf}
+{%
+  \setCJKfamilyfont{bsong}{bsong.ttf}
+  \newcommand*{\bsong}{\CJKfamily{bsong}}
+}
+{\newcommand*{\bsong}{\songti}}
 \IfFileExists{cover.tex}
 {%
 	\input{cover.tex}
