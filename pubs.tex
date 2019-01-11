@@ -12,6 +12,9 @@
 %% 发表论文列表
 
 \chapter*{攻读博士期间发表的学术论文和专利}
+\markboth{攻读博士期间发表的学术论文和专利}{}
+%由于使用chapter*，会导致该页页眉显示错误。使用\markboth来修正这一问题
+%https://tex.stackexchange.com/questions/89914/chapter-name-in-the-header-with-chapter 
 \newrefsection[pubs.bib]
 \nocite{*}
 \printbibliography[heading=none]
