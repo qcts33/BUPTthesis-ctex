@@ -63,7 +63,7 @@
 
 % biblatex
 \iftoggle{chapterbib}{\PassOptionsToPackage{refsection=chapter}{biblatex}}{}
-\RequirePackage[backend=biber,style=gb7714-2015,gbnamefmt=lowercase,doi=false]{biblatex}
+\RequirePackage[backend=biber,style=gb7714-2015,gbnamefmt=familyahead,doi=false]{biblatex}
 \iftoggle{chapterbib}
 {%
   \newcommand{\chapterbib}{\printbibliography[heading=subbibliography]}
