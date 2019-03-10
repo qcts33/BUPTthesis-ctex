@@ -54,12 +54,15 @@
 \RequirePackage{newtxtext}
 \iftoggle{txmath}{\RequirePackage{newtxmath}}{}
 \RequirePackage{graphicx}
-\RequirePackage{caption}
 \RequirePackage{subcaption}
 \RequirePackage{siunitx}
 \RequirePackage{algorithm, algorithmicx}
 \RequirePackage{longtable}
 \RequirePackage{ulem}
+
+%caption
+\RequirePackage{caption}
+\captionsetup{font={small}}
 
 % biblatex
 \iftoggle{chapterbib}{\PassOptionsToPackage{refsection=chapter}{biblatex}}{}
@@ -86,6 +89,36 @@
 	}
 }
 \RequirePackage{hyperref}
+
+% cleveref
+\RequirePackage{cleveref}
+
+\newcommand{\creflastconjunction}{和~}
+\newcommand{\crefpairconjunction}{和~}
+
+\crefformat{chapter}{第~#2#1#3~章}
+\crefrangeformat{chapter}{第~#3#1#4~-~#5#2#6~章}
+
+\crefformat{section}{第~#2#1#3~节}
+\crefrangeformat{section}{第~#3#1#4~-~#5#2#6~节}
+
+\crefformat{subsection}{第~#2#1#3~小节}
+\crefrangeformat{subsection}{第~#3#1#4~-~#5#2#6~小节}
+
+\crefformat{subsubsection}{第~#2#1#3~项}
+\crefrangeformat{subsubsection}{第~#3#1#4~-~#5#2#6~项}
+
+\crefname{table}{表}{表}
+\creflabelformat{table}{#2#1#3~}
+\crefrangelabelformat{table}{#3#1#4~-~#5#2#6~}
+
+\crefname{figure}{图}{图}
+\creflabelformat{figure}{#2#1#3~}
+\crefrangelabelformat{figure}{#3#1#4~-~#5#2#6~}
+
+\crefname{equation}{式}{式}
+\creflabelformat{equation}{(#2#1#3)~}
+\crefrangelabelformat{equation}{(#3#1#4)~-~(#5#2#6)~}
 
 % config page
 \RequirePackage[paper=a4paper,total={155mm,230mm},includehead,hcentering]{geometry}
