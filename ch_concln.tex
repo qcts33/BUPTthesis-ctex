@@ -13,6 +13,11 @@
 
 参考文献可以使用\cite{BUPT_Thesis_Format_2014}和\parencite{BUPT_Thesis_Format_2004}的表示方法。
 
+新增自动缩略语功能，可以看到第一次使用 ``\gls{3GPP}'' 和随后的使用``\gls{3GPP}{''}会展现出不同的效果。
+但需要注意的是使用缩略语时英文两侧的自动空格不会出现，比如这个\gls{3GPP}和这个3GPP。
+但是，当英文在句尾的时候其实是不需要在标点前加空格的，所以在定义缩略语的时候前后都加上空格也是不可行的。
+现在暂时只能要求大家手动调整一下 \texttt{\textbackslash{}gls\{\}} 两侧的空格了。
+
 \section{三国演义}
 《三国演义》\cite{SANGUOYANYI}是中国第一部长篇章回体历史演义的小说，以描写战争为主，反映了蜀（汉）、魏、吴三个政治集团之间的政治和军事斗争，大致分为黄巾之乱、董卓之乱、群雄逐鹿、三国鼎立、三国归晋五大部分。
 
@@ -51,7 +56,7 @@
     \centering\large B
     \caption{Another subfigure}\label{fig:1b}
     \end{subfigure}
-    \caption{A figure}\label{fig:1}
+    \caption[A figure]{A figure \protect\cite{CITATION_ARTICLE}}\label{fig:1}
 \end{figure}
 
 引用\cref{fig:1}和其中的\cref{fig:1a,fig:1b}。

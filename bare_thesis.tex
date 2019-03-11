@@ -5,19 +5,18 @@
 %% The original source files were:
 %%
 %% install/buptgraduatethesis.dtx  (with options: `bare-thesis')
-%% 
+%%
 %% This file is a part of the example of BUPTGraduateThesis.
-%% 
+%%
 
 
 \documentclass[chapterbib,txmath]{BUPTthesis}
 \addbibresource{bare_thesis.bib}
 
-\newcommand{\gls}[1]{#1}
 \input{metadata}
+\loadglsentries{acronyms}
 
 \begin{document}
-
 \maketitle
 \frontmatter                            % only in book class (roman page #s)
 \include{abstract}

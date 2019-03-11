@@ -120,6 +120,39 @@
 \creflabelformat{equation}{(#2#1#3)~}
 \crefrangelabelformat{equation}{(#3#1#4)~-~(#5#2#6)~}
 
+% glossaries
+\RequirePackage[nomain,nogroupskip,toc,section=chapter]{glossaries}
+\newglossarystyle{bupt@acronyms@style}{  % 设置自定义缩略语表格式
+  \setglossarystyle{long}                % 以 long 样式为基础
+  \renewcommand*{\glossentry}[2]{%
+    \glossentryname{##1} & \glossentrydesc{##1}, \glossentrysymbol{##1}\\
+  }
+}
+\setlength{\glsdescwidth}{0.9\linewidth} % 缩略语描述列宽
+\setglossarystyle{bupt@acronyms@style} % 选择自定义的缩略语表样式
+% 设置 acronym 词汇表的标题
+\newglossary[alg]{acronym}{acr}{acn}{\bupt@label@listofacronyms}
+\makeglossaries
+% 重载 \newacronym 命令
+\renewcommand{\newacronym}[4]{%
+  \newglossaryentry{#1}{%
+    type=\acronymtype,%
+    name={#2},%
+    description={#3},%
+    text={#2},%
+    descriptionplural={#3\acrpluralsuffix},%
+    first={#2}, %{#3 (#2)},%
+    plural={#2\acrpluralsuffix},%
+    firstplural={\@glo@descplural\space (\@glo@plural)},%
+    symbol={#4}%
+  }%
+}
+% 重载 \cs{glsdisplayfirst} 命令
+\renewcommand{\glsdisplayfirst}[4]{{#3} ({#2}, {#1})}
+\renewcommand{\glsdefaulttype}{acronym}
+\renewcommand{\glossarysection}[2][\@gls@title]{\chapter{#2}}
+\newcommand{\tableofacronyms}{\printglossary[type=\acronymtype]}
+
 % config page
 \RequirePackage[paper=a4paper,total={155mm,230mm},includehead,hcentering]{geometry}
 
