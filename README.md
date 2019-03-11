@@ -19,17 +19,25 @@
 *注意：虽然CTeX套装的使用依然很广泛，但由于CTeX套装已经多年没有维护，本项目不对CTeX套装的兼容性做任何保证。*
 
 虽然CTeX宏包可以自行适应编译引擎，但由于开发过程中主要使用XeLaTeX进行测试，故强烈建议使用XeLaTeX引擎来进行编译。
-为了实现引用、编号等功能，可使用以下命令进行编译。（在MikTex下使用`latexmk`可能需要单独安装一个[Perl](http://strawberryperl.com/)）
+为了实现引用、编号等功能，可使用以下命令进行编译。
+
 ```
-latexmk -pdfxe -synCTeX=1 %DOC%
+latexmk %DOC%
 ```
-或者可以直接使用
+本项目提供了相应的 latexmkrc 文件用以定义latexmk的行为。
+为了保证每次编译的速度以及效果，强烈建议大家采用latexmk。
+（在MikTex下使用`latexmk`可能需要单独安装一个[Perl](http://strawberryperl.com/)）
+
+另外也可以直接使用以下命令
 ```
 xelatex %DOC%
+makeglossaries %DOC%
 biber %DOC%
 xelatex %DOC%
 xelatex %DOC%
 ```
+
+`makeglossaries %DOC%`其实不用在写作的过程中反复的运行，这个并不影响正文中的输出，所以只需在编译最终版的时候执行一次用以生成缩略语表即可。
 
 ## Overleaf在线编译
 
@@ -45,7 +53,7 @@ xelatex %DOC%
 
 # 已知问题
 
-## 扉页 
+## 扉页
 
 研究生院给的扉页样例上采用了粗宋体（伪粗体），但本文档类默认绘制的扉页并没有采用粗体字。这是因为Windows上其实并没有粗宋体字形，CTeX中使用黑体来代替粗宋体。不过《关于研究生学位论文格式的统一要求》上并没有明确指出对粗宋体的使用，我想应该问题不大。
 
@@ -61,7 +69,7 @@ xelatex %DOC%
 
 ~~不知是我系统的问题还是`newtx`包存在问题，我这里调用`newtxmath`之后就有部分数学符号无法使用。现在暂时采用LaTeX默认的cm数学字体。不过不管用什么数学字体，LaTeX的数学排版肯定比Word强。另外本文档类提供一个`txmath`选项来开启`newtxmath`的调用。~~
 
-发现问题我的系统里少一个叫`boondox`的字体包，手动安装之后便可以正常编译`newtxmath`了。
+发现我的系统里少一个叫`boondox`的字体包，手动安装之后便可以正常编译`newtxmath`了。
 如果有遇到相似问题的可以尝试一下。
 
 ## 引文格式
@@ -79,7 +87,14 @@ xelatex %DOC%
 
 ## 自动缩略语
 
-`BUPTGraduateThesis`中实现了非常强大的自动缩略语功能，但是我在移植过程中发现自动缩略语所依赖`glossaries`包似乎跟`biblatex`冲突。由于时间紧迫，未能查明具体原因。暂时放弃实现相应的功能，现在只能手动管理缩略语了。
+~~`BUPTGraduateThesis`中实现了非常强大的自动缩略语功能，但是我在移植过程中发现自动缩略语所依赖`glossaries`包似乎跟`biblatex`冲突。由于时间紧迫，未能查明具体原因。暂时放弃实现相应的功能，现在只能手动管理缩略语了。~~
+
+经过 [@qin-nz](https://github.com/qin-nz) 的提示，我发现原来`glossaries`与`biblatex`其实并无冲突，至少我原来遇到的问题无法再现了……
+
+于是现在成功移植了`BUPTGraduateThesis`中自动缩略语功能。
+不过`\gls{}`的输出会造成中英文混排的时候自动空格不出现的问题。
+这个问题暂时无解，所以需要大家手动控制一下`\gls{}`两侧的空格。
+另外编译的时候需要多加一个`makeglossaries %DOC%`
 
 ## 功能缺乏
 
