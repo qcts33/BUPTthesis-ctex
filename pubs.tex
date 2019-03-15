@@ -5,15 +5,18 @@
 %% The original source files were:
 %%
 %% install/buptgraduatethesis.dtx  (with options: `pubs')
-%% 
+%%
 %% This file is a part of the example of BUPTGraduateThesis.
-%% 
+%%
 
 %% 发表论文列表
 
 \chapter{攻读博士期间发表的学术论文和专利}
 
-\newrefsection[pubs.bib]
+\nottoggle{review}
+{\newrefsection[pubs.bib]}
+{\newrefsection[pubs-review.bib]}
+
 \nocite{*}
 \printbibliography[heading=none]
 \endrefsection
