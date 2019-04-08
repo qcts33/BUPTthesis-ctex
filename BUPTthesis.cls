@@ -50,9 +50,10 @@
 
 
 % Load packages
-\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm}
+\RequirePackage{mathtools,amsthm,amsfonts,amssymb}
 \RequirePackage{newtxtext}
 \iftoggle{txmath}{\RequirePackage{newtxmath}}{}
+\RequirePackage{bm}
 \RequirePackage{graphicx}
 \RequirePackage{subcaption}
 \RequirePackage{siunitx}
