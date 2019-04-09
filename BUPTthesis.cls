@@ -50,13 +50,13 @@
 
 
 % Load packages
-\RequirePackage{mathtools,amsthm,amsfonts,amssymb}
+\RequirePackage{amsthm,thmtools}
 \RequirePackage{newtxtext}
 \iftoggle{txmath}{\RequirePackage{newtxmath}}{}
-\RequirePackage{bm}
+\RequirePackage{mathtools,amsfonts,amssymb,bm}
 \RequirePackage{graphicx}
 \RequirePackage{subcaption}
-\RequirePackage{siunitx}
+\RequirePackage[per-mode=symbol]{siunitx}
 \RequirePackage{algorithm, algorithmicx}
 \RequirePackage{longtable}
 \RequirePackage{ulem}
@@ -199,11 +199,11 @@
 
 % config numbering for equation fig table and so on.
 \AtBeginDocument{%
-  \renewcommand{\theequation}{\thechapter--\arabic{equation}}
-  \renewcommand{\thefigure}{\thechapter--\arabic{figure}}
+  \renewcommand{\theequation}{\thechapter-\arabic{equation}}
+  \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
   \renewcommand\p@subfigure{\thefigure}
-  \renewcommand{\thetable}{\thechapter--\arabic{table}}
-  \renewcommand{\thealgorithm}{\thechapter--\arabic{algorithm}}
+  \renewcommand{\thetable}{\thechapter-\arabic{table}}
+  \renewcommand{\thealgorithm}{\thechapter-\arabic{algorithm}}
 }
 
 % draw front pages
