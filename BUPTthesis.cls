@@ -64,7 +64,8 @@
 
 %caption
 \RequirePackage{caption}
-\captionsetup{font={small}}
+\DeclareCaptionFont{kaiti}{\zihao{5}\kaishu}
+\captionsetup{font=kaiti}
 
 % biblatex
 \iftoggle{chapterbib}{\PassOptionsToPackage{refsection=chapter}{biblatex}}{}
