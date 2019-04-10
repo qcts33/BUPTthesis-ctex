@@ -117,9 +117,9 @@
 \creflabelformat{figure}{#2#1#3~}
 \crefrangelabelformat{figure}{#3#1#4~-~#5#2#6~}
 
-\crefname{equation}{式}{式}
-\creflabelformat{equation}{(#2#1#3)~}
-\crefrangelabelformat{equation}{(#3#1#4)~-~(#5#2#6)~}
+\crefname{equation}{}{}
+\creflabelformat{equation}{(#2#1#3)}
+\crefrangelabelformat{equation}{(#3#1#4)~-~(#5#2#6)}
 
 % glossaries
 \RequirePackage[nomain,nogroupskip,toc,section=chapter]{glossaries}
