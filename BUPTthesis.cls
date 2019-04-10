@@ -26,6 +26,7 @@
   },
   section/format = \zihao{4}\heiti,
   subsection/format = \zihao{-4}\heiti,
+  subsubsection/format = \zihao{-4},
 }
 \newcommand{\refname}{\bibname}
 \AtEndOfClass{\input{BUPTthesis.cfg}}
