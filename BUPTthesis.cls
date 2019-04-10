@@ -220,7 +220,7 @@
   \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
   \renewcommand\p@subfigure{\thefigure}
   \renewcommand{\thetable}{\thechapter-\arabic{table}}
-  % \renewcommand{\thealgorithm}{\thechapter-\arabic{algorithm}}
+  \renewcommand{\thealgorithm}{\thechapter-\arabic{algorithm}}
 }
 
 % draw front pages
