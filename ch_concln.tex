@@ -49,17 +49,39 @@
 
 \begin{figure}
     \begin{subfigure}[b]{.5\linewidth}
-    \centering\large A
-    \caption{A subfigure}\label{fig:1a}
+        % \centering\large A
+        \centering
+        \rule{2cm}{2cm}
+        % \includegraphics[width=\linewidth]{logo/buptseal}
+        \caption{一个子图}\label{fig:1a}
     \end{subfigure}%
     \begin{subfigure}[b]{.5\linewidth}
-    \centering\large B
-    \caption{Another subfigure}\label{fig:1b}
+        \centering
+        \rule{2cm}{2cm}
+        \caption{另一个子图}\label{fig:1b}
     \end{subfigure}
-    \caption[A figure]{A figure \protect\cite{CITATION_ARTICLE}}\label{fig:1}
+    \caption[A figure 图片测试]{A figure 图片测试\cite{CITATION_ARTICLE}}\label{fig:1}
 \end{figure}
 
-引用\cref{fig:1}和其中的\cref{fig:1a,fig:1b}。
+\begin{figure}
+    \ffigbox[\linewidth]
+    {\begin{subfloatrow}\useFCwidth
+        \fcapside[\FBwidth]
+        {\rule{4cm}{2cm}}
+        {\caption{}\label{fig:2a}}
+        \fcapside[\FBwidth]
+        {\rule{4cm}{2cm}}
+        {\caption{}\label{fig:2b}}
+    \end{subfloatrow}}
+    {
+        \caption[A figure 图片测试]{A figure 图片测试\cite{CITATION_ARTICLE}，\subref{fig:2a} 一个子图，\subref{fig:2b} 另一个子图}
+        \label{fig:2}
+    }
+\end{figure}
+
+本文档类提供两桶插入子图的方式，一种是传统的样式，如包含\cref{fig:1a,fig:1b}的\cref{fig:1}所示。
+但是学校根据统一要求的说明，子图的序号应标注在对应子图的左上角，子图名称因与图名一起在caption中列出，对此本文档类提供如\cref{fig:2}所示的样式。
+我看到之前师兄们的文章并没有遵循这个要求，原 buptgraduatethesis 文档类中似乎也没有对应的实现，不知是否是新引进的要求。
 
 \section{测试定理环境}
 \begin{theorem}[定理名称]
