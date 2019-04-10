@@ -56,16 +56,31 @@
 \iftoggle{txmath}{\RequirePackage{newtxmath}}{}
 \RequirePackage{mathtools,amsfonts,amssymb,bm}
 \RequirePackage{graphicx}
-\RequirePackage{subcaption}
 \RequirePackage[per-mode=symbol]{siunitx}
-\RequirePackage{algorithm, algorithmicx}
 \RequirePackage{longtable}
 \RequirePackage{ulem}
 
 %caption
 \RequirePackage{caption}
+\RequirePackage{subcaption}
+\RequirePackage{floatrow}
 \DeclareCaptionFont{kaiti}{\zihao{5}\kaishu}
-\captionsetup{font=kaiti}
+\captionsetup[figure]{font=kaiti}
+\captionsetup[subfigure]{
+  justification=raggedright,
+  labelformat=simple,
+  list=off
+}
+\floatsetup[subfigure]{
+  style=plain,
+  heightadjust=object,
+  capbesideposition={left,top},
+  capbesidesep=none,
+}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+% algorithm
+\RequirePackage{algorithm, algorithmicx}
 
 % biblatex
 \iftoggle{chapterbib}{\PassOptionsToPackage{refsection=chapter}{biblatex}}{}
@@ -205,7 +220,7 @@
   \renewcommand{\thefigure}{\thechapter-\arabic{figure}}
   \renewcommand\p@subfigure{\thefigure}
   \renewcommand{\thetable}{\thechapter-\arabic{table}}
-  \renewcommand{\thealgorithm}{\thechapter-\arabic{algorithm}}
+  % \renewcommand{\thealgorithm}{\thechapter-\arabic{algorithm}}
 }
 
 % draw front pages
