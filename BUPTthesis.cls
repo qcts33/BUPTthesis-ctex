@@ -29,7 +29,7 @@
   subsubsection/format = \zihao{-4},
 }
 \newcommand{\refname}{\bibname}
-\AtEndOfClass{\input{BUPTthesis.cfg}}
+% \AtEndOfClass{\input{BUPTthesis.cfg}}
 
 % define names
 \newcommand{\studentid}[1]{\def\bupt@meta@studentid{#1}}
@@ -54,11 +54,12 @@
 \RequirePackage{amsthm,thmtools}
 \RequirePackage{newtxtext}
 \iftoggle{txmath}{\RequirePackage{newtxmath}}{}
-\RequirePackage{mathtools,amsfonts,amssymb,bm}
+\RequirePackage{mathtools,amsfonts,amssymb,empheq,bm}
 \RequirePackage{graphicx}
 \RequirePackage[per-mode=symbol]{siunitx}
 \RequirePackage{longtable}
 \RequirePackage{ulem}
+\RequirePackage{booktabs}
 
 %caption
 \RequirePackage{caption}
@@ -66,10 +67,12 @@
 \RequirePackage{floatrow}
 \DeclareCaptionFont{kaiti}{\zihao{5}\kaishu}
 \captionsetup[figure]{font=kaiti}
+\floatsetup[table]{capposition=top}
 \captionsetup[subfigure]{
   justification=raggedright,
   labelformat=simple,
-  list=off
+  list=off,
+  font=kaiti,
 }
 \floatsetup[subfigure]{
   style=plain,
@@ -78,9 +81,6 @@
   capbesidesep=none,
 }
 \renewcommand\thesubfigure{(\alph{subfigure})}
-
-% algorithm
-\RequirePackage{algorithm, algorithmicx}
 
 % biblatex
 \iftoggle{chapterbib}{\PassOptionsToPackage{refsection=chapter}{biblatex}}{}
@@ -108,8 +108,44 @@
 }
 \RequirePackage{hyperref}
 
+% theorem like style
+
+\declaretheoremstyle[
+  style=definition,
+  headpunct={},
+  postheadspace={.5\ccwd},
+  headindent={\parindent},
+  numberwithin=chapter,
+]{Theorem}
+
+\declaretheorem[name={假设},style=Theorem]{assumption}
+\declaretheorem[name={定义},style=Theorem]{definition}
+\declaretheorem[name={命题},style=Theorem]{proposition}
+\declaretheorem[name={引理},style=Theorem]{lemma}
+\declaretheorem[name={定理},style=Theorem]{theorem}
+\declaretheorem[name={公理},style=Theorem]{axiom}
+\declaretheorem[name={推论},style=Theorem]{corollary}
+\declaretheorem[name={注释},style=Theorem]{remark}
+\declaretheorem[name={问题},style=Theorem]{problem}
+\declaretheorem[name={猜想},style=Theorem]{conjecture}
+\declaretheorem[name={例},style=Theorem]{example}
+
+\declaretheoremstyle[
+  style=definition,
+  numbered=no,
+  headindent={\parindent},
+  headpunct={：},
+  qed=\qedsymbol
+]{Proof}
+
+\declaretheorem[name={证明},style=Proof]{Proof}
+\renewenvironment{proof}{\begin{Proof}}{\end{Proof}}
+
+% algorithm
+\RequirePackage{algorithm, algpseudocode}
+
 % cleveref
-\RequirePackage{cleveref}
+\RequirePackage[sort]{cleveref}
 
 \newcommand{\creflastconjunction}{和~}
 \newcommand{\crefpairconjunction}{和~}
@@ -137,6 +173,55 @@
 \crefname{equation}{}{}
 \creflabelformat{equation}{(#2#1#3)}
 \crefrangelabelformat{equation}{(#3#1#4)~-~(#5#2#6)}
+
+\crefname{assumption}{假设}{假设}
+\creflabelformat{assumption}{#2#1#3~}
+\crefrangelabelformat{assumption}{#3#1#4~-~#5#2#6~}
+
+\crefname{definition}{定义}{定义}
+\creflabelformat{definition}{#2#1#3~}
+\crefrangelabelformat{definition}{#3#1#4~-~#5#2#6~}
+
+\crefname{proposition}{命题}{命题}
+\creflabelformat{proposition}{#2#1#3~}
+\crefrangelabelformat{proposition}{#3#1#4~-~#5#2#6~}
+
+\crefname{lemma}{引理}{引理}
+\creflabelformat{lemma}{#2#1#3~}
+\crefrangelabelformat{lemma}{#3#1#4~-~#5#2#6~}
+
+\crefname{theorem}{定理}{定理}
+\creflabelformat{theorem}{#2#1#3~}
+\crefrangelabelformat{theorem}{#3#1#4~-~#5#2#6~}
+
+\crefname{axiom}{公理}{公理}
+\creflabelformat{axiom}{#2#1#3~}
+\crefrangelabelformat{axiom}{#3#1#4~-~#5#2#6~}
+
+\crefname{corollary}{推论}{推论}
+\creflabelformat{corollary}{#2#1#3~}
+\crefrangelabelformat{corollary}{#3#1#4~-~#5#2#6~}
+
+\crefname{remark}{注释}{注释}
+\creflabelformat{remark}{#2#1#3~}
+\crefrangelabelformat{remark}{#3#1#4~-~#5#2#6~}
+
+\crefname{problem}{问题}{问题}
+\creflabelformat{problem}{#2#1#3~}
+\crefrangelabelformat{problem}{#3#1#4~-~#5#2#6~}
+
+\crefname{conjecture}{猜想}{猜想}
+\creflabelformat{conjecture}{#2#1#3~}
+\crefrangelabelformat{conjecture}{#3#1#4~-~#5#2#6~}
+
+\crefname{example}{例}{例}
+\creflabelformat{example}{#2#1#3~}
+\crefrangelabelformat{example}{#3#1#4~-~#5#2#6~}
+
+\crefname{algorithm}{算法}{算法}
+\creflabelformat{example}{#2#1#3~}
+\crefrangelabelformat{example}{#3#1#4~-~#5#2#6~}
+
 
 % glossaries
 \RequirePackage[nomain,nogroupskip,toc,section=chapter]{glossaries}
@@ -308,5 +393,66 @@
   \markboth{\bupt@label@acknowledgement}{}
 }
 {}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\bupt@page@head{北京邮电大学工学博士学位论文}
+\def\bupt@label@covertitle{博士学位论文}
+\def\bupt@label@ecovertitle{Thesis for Doctor Degree}
+\def\bupt@label@cmajor{专\hspace{2em}业}
+\def\bupt@label@emajor{Subject}
+
+\def\bupt@label@cauthor{姓\hspace{2em}名}
+\def\bupt@label@eauthor{Candidate}
+\def\bupt@label@csupervisor{导\hspace{2em}师}
+\def\bupt@label@esupervisor{Supervisor}
+\def\bupt@label@cdepartment{学\hspace{2em}院}
+\def\bupt@label@edepartment{Institute}
+\def\bupt@label@studentid{学\hspace{2em}号}
+\def\bupt@label@estudentid{Student No.}
+\def\bupt@label@classlevel{密级}
+
+\def\bupt@label@ctitle{题目}
+\def\bupt@label@etitle{Topic}
+\def\bupt@label@classdur{保密期限}
+\def\bupt@label@cschoolname{北京邮电大学}
+\def\bupt@label@eschoolname{Beijing University of Posts and Telecommunications}
+\def\bupt@title@sep{：}
+\def\bupt@title@esep{:}
+
+\def\bupt@declaration@title{独创性（或创新性）声明}
+\long\def\bupt@declaration@body{%
+  本人声明所呈交的论文是本人在导师指导下进行的研究工作及取得的研究成果。%
+  尽我所知，除了文中特别加以标注和致谢中所罗列的内容以外，论文中不包含其他人已经发表或撰写过的研究成果，也不包含为获得北京邮电大学或其他教育机构的学位或证书而使用过的材料。%
+  与我一同工作的同志对本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。\par%
+  申请学位论文与资料若有不实之处，本人承担一切相关责任。%
+}
+\def\bupt@authorization@title{关于论文使用授权的说明}
+\long\def\bupt@authorization@body{%
+  本人完全了解并同意北京邮电大学有关保留、使用学位论文的规定，即：北京邮电大学拥有以下关于学位论文的无偿使用权，具体包括：学校有权保留并向国家有关部门或机构送交论文，有权允许学位论文被查阅和借阅；%
+  学校可以公布学位论文的全部或部分内容，有权允许采用影印、缩印或其它复制手段保存、汇编学位论文，将学位论文的全部或部分内容编入有关数据库进行检索。%
+  （保密的学位论文在解密后遵守此规定）%
+}
+\def\bupt@label@authorsigniture{本人签名：}
+\def\bupt@label@supervisorsigniture{导师签名：}
+\def\bupt@label@date{日期：}
+\def\bupt@label@ckeywords{关键词：}
+\def\bupt@label@ekeywords{KEY WORDS:}
+\def\bupt@label@cabstract{摘\hspace{1em}要}
+\def\bupt@label@eabstract{ABSTRACT}
+\def\bupt@label@notations{符号说明}
+\def\kwsep{\quad}
+\def\bupt@label@refname{参考文献}
+\def\bupt@label@listofacronyms{缩略语表}
+\def\bupt@label@tableofpublications{攻读学位期间发表的学术论文目录}
+\def\bupt@label@acknowledgement{致谢}
+
+\def\bupt@meta@classlevel{公开}
+
+
+\def\bupt@figurename{图}
+\def\bupt@listfigurename{插图索引}
+\def\bupt@tablename{表}
+\def\bupt@listtablename{表格索引}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \endinput
