@@ -83,18 +83,14 @@
 但是学校根据统一要求的说明，子图的序号应标注在对应子图的左上角，子图名称因与图名一起在caption中列出，对此本文档类提供如\cref{fig:2}所示的样式。
 我看到之前师兄们的文章并没有遵循这个要求，原 buptgraduatethesis 文档类中似乎也没有对应的实现，不知是否是新引进的要求。
 
-\section{测试定理环境}
+\subsection{测试定理环境}
 \begin{theorem}[定理名称]
     定理环境测试
 \end{theorem}
 
 \begin{proof}
-    使用 \texttt{proof} 环境可以得到使用\emph{楷体}作为标题的证明
+    使用 \texttt{proof} 环境可以得到使用\textbf{黑体}作为标题的证明
 \end{proof}
-
-\begin{Proof}
-    使用 \texttt{Proof} 环境可以得到使用\textbf{黑体}作为标题的证明
-\end{Proof}
 
 \subsection{测试参考文献}
 测试所有参考文献类型\cite{CITATION_BOOK,CITATION_ARTICLE,CITATION_PROCEEDINGS,CITATION_INPROCEEDINGS,CITATION_TECHREPORT,CITATION_STANDARD,CITATION_PATENT,CITATION_NEWSPAPER,CITATION_ELECTRONIC}。
