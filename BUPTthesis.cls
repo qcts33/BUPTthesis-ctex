@@ -362,7 +362,7 @@
   \begin{center}
     \begin{minipage}{110mm}
       \centering
-      {\zihao{3}\bfseries\bupt@meta@etitle}
+      {\zihao{3}\bfseries\MakeUppercase\bupt@meta@etitle}
       \vskip 20pt
       {\zihao{-3}\bfseries\bupt@label@eabstract}
     \end{minipage}
