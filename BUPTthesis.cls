@@ -56,7 +56,7 @@
 \iftoggle{txmath}{\RequirePackage{newtxmath}}{}
 \RequirePackage{mathtools,amsfonts,amssymb,empheq,bm}
 \RequirePackage{graphicx}
-\RequirePackage[per-mode=symbol]{siunitx}
+\RequirePackage[per-mode=symbol,binary-units=true]{siunitx}
 \RequirePackage{longtable}
 \RequirePackage{ulem}
 \RequirePackage{booktabs}
@@ -84,7 +84,15 @@
 
 % biblatex
 \iftoggle{chapterbib}{\PassOptionsToPackage{refsection=chapter}{biblatex}}{}
-\RequirePackage[backend=biber,style=gb7714-2015,gbnamefmt=familyahead,gbpub=false,doi=false]{biblatex}
+\RequirePackage[
+  backend=biber,
+  style=gb7714-2015,
+  gbnamefmt=familyahead,
+  gbpub=false,
+  doi=false,
+  url=false,
+  eprint=false,
+]{biblatex}
 \iftoggle{chapterbib}
 {%
   \newcommand{\chapterbib}{\printbibliography[heading=subbibliography]}
