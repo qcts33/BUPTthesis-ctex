@@ -4,6 +4,8 @@
 \RequirePackage{etoolbox}
 \newtoggle{txmath}
 \DeclareOption{txmath}{\toggletrue{txmath}}
+\newtoggle{smallerops}
+\DeclareOption{smallerops}{\toggletrue{smallerops}\toggletrue{txmath}}
 \newtoggle{review}
 \DeclareOption{review}{\toggletrue{review}}
 \newtoggle{chapterbib}
@@ -53,6 +55,7 @@
 % Load packages
 \RequirePackage{amsthm,thmtools}
 \RequirePackage{newtxtext}
+\iftoggle{smallerops}{\PassOptionsToPackage{smallerops}{newtxmath}}{}
 \iftoggle{txmath}{\RequirePackage{newtxmath}}{}
 \RequirePackage{mathtools,amsfonts,amssymb,empheq,bm}
 \RequirePackage{graphicx}
