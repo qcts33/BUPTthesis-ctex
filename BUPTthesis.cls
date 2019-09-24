@@ -11,6 +11,8 @@
 \newtoggle{chapterbib}
 \DeclareOption{chapterbib}{\toggletrue{chapterbib}}
 % \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
+\newtoggle{gls}
+\DeclareOption{gls}{\toggletrue{gls}}
 \ProcessOptions
 
 
@@ -57,12 +59,16 @@
 \RequirePackage{newtxtext}
 \iftoggle{smallerops}{\PassOptionsToPackage{smallerops}{newtxmath}}{}
 \iftoggle{txmath}{\RequirePackage{newtxmath}}{}
-\RequirePackage{mathtools,amsfonts,amssymb,empheq,bm}
+\RequirePackage{mathtools,amsfonts,amssymb,empheq}
+\RequirePackage{bm}
+\RequirePackage[scr=euler]{mathalpha}
 \RequirePackage{graphicx}
-\RequirePackage[per-mode=symbol,binary-units=true]{siunitx}
+\RequirePackage[per-mode=repeated-symbol,binary-units=true]{siunitx}
 \RequirePackage{longtable}
 \RequirePackage{ulem}
 \RequirePackage{booktabs}
+\RequirePackage{tabu}
+\RequirePackage{emptypage}
 
 %caption
 \RequirePackage{caption}
@@ -70,6 +76,7 @@
 \RequirePackage{floatrow}
 \DeclareCaptionFont{kaiti}{\zihao{5}\kaishu}
 \captionsetup[figure]{font=kaiti}
+\captionsetup[table]{font=kaiti}
 \floatsetup[table]{capposition=top}
 \captionsetup[subfigure]{
   justification=raggedright,
@@ -109,6 +116,7 @@
 % hyperref
 \AtBeginDocument{
 	\hypersetup{
+    bookmarksnumbered,
 		colorlinks,
 		urlcolor=black,
 		linkcolor=black,
@@ -154,14 +162,15 @@
 
 % algorithm
 \RequirePackage{algorithm, algpseudocode}
+\floatname{algorithm}{算法}
 
 % cleveref
 \RequirePackage[sort]{cleveref}
 
-\newcommand{\creflastconjunction}{和~}
-\newcommand{\crefpairconjunction}{和~}
+\newcommand{\creflastconjunction}{~和~}
+\newcommand{\crefpairconjunction}{~和~}
 
-\crefformat{chapter}{第~#2#1#3~章}
+\crefformat{chapter}{第#2\zhnumber{#1}#3章}
 \crefrangeformat{chapter}{第~#3#1#4~-~#5#2#6~章}
 
 \crefformat{section}{第~#2#1#3~节}
@@ -230,68 +239,62 @@
 \crefrangelabelformat{example}{#3#1#4~-~#5#2#6~}
 
 \crefname{algorithm}{算法}{算法}
-\creflabelformat{example}{#2#1#3~}
-\crefrangelabelformat{example}{#3#1#4~-~#5#2#6~}
+\creflabelformat{algorithm}{#2#1#3~}
+\crefrangelabelformat{algorithm}{#3#1#4~-~#5#2#6~}
 
+\crefname{appendix}{附录}{附录}
+\creflabelformat{appendix}{#2#1#3~}
+\crefrangelabelformat{appendix}{#3#1#4~-~#5#2#6~}
 
 % glossaries
-\RequirePackage[nomain,nogroupskip,toc,section=chapter]{glossaries}
-\newglossarystyle{bupt@acronyms@style}{  % 设置自定义缩略语表格式
-  \setglossarystyle{long}                % 以 long 样式为基础
-  \renewcommand*{\glossentry}[2]{%
-    \glossentryname{##1} & \glossentrydesc{##1}, \glossentrysymbol{##1}\\
+\iftoggle{gls}
+{
+  \RequirePackage[nomain,nogroupskip,toc,section=chapter]{glossaries}
+  \newglossarystyle{bupt@acronyms@style}{  % 设置自定义缩略语表格式
+    \setglossarystyle{long}                % 以 long 样式为基础
+    \renewcommand*{\glossentry}[2]{%
+      \glossentryname{##1} & \glossentrydesc{##1}, \glossentrysymbol{##1}\\
+    }
   }
-}
-\setlength{\glsdescwidth}{0.9\linewidth} % 缩略语描述列宽
-\setglossarystyle{bupt@acronyms@style} % 选择自定义的缩略语表样式
-% 设置 acronym 词汇表的标题
-\newglossary[alg]{acronym}{acr}{acn}{\bupt@label@listofacronyms}
-\makeglossaries
-% 重载 \newacronym 命令
-\renewcommand{\newacronym}[4]{%
-  \newglossaryentry{#1}{%
-    type=\acronymtype,%
-    name={#2},%
-    description={#3},%
-    text={#2},%
-    descriptionplural={#3\acrpluralsuffix},%
-    first={#2}, %{#3 (#2)},%
-    plural={#2\acrpluralsuffix},%
-    firstplural={\@glo@descplural\space (\@glo@plural)},%
-    symbol={#4}%
-  }%
-}
-% 重载 \cs{glsdisplayfirst} 命令
-\renewcommand{\glsdisplayfirst}[4]{{#3} ({#2}, {#1})}
-\renewcommand{\glsdefaulttype}{acronym}
-\renewcommand{\glossarysection}[2][\@gls@title]{\chapter{#2}}
-\newcommand{\tableofacronyms}{\printglossary[type=\acronymtype]}
-
+  \setlength{\glsdescwidth}{0.9\linewidth} % 缩略语描述列宽
+  \setglossarystyle{bupt@acronyms@style} % 选择自定义的缩略语表样式
+  % 设置 acronym 词汇表的标题
+  \newglossary[alg]{acronym}{acr}{acn}{\bupt@label@listofacronyms}
+  \makeglossaries
+  % 重载 \newacronym 命令
+  \renewcommand{\newacronym}[4]{%
+    \newglossaryentry{#1}{%
+      type=\acronymtype,%
+      name={#2},%
+      description={#3},%
+      text={#2},%
+      descriptionplural={#3\acrpluralsuffix},%
+      first={#2}, %{#3 (#2)},%
+      plural={#2\acrpluralsuffix},%
+      firstplural={\@glo@descplural\space (\@glo@plural)},%
+      symbol={#4}%
+    }%
+  }
+  % 重载 \cs{glsdisplayfirst} 命令
+  \renewcommand{\glsdisplayfirst}[4]{{#3} ({#2}, {#1})}
+  \renewcommand{\glsdefaulttype}{acronym}
+  \renewcommand{\glossarysection}[2][\@gls@title]{\chapter{#2}}
+  \newcommand{\tableofacronyms}{\printglossary[type=\acronymtype]}
+}{\relax}
 % config page
 \RequirePackage[paper=a4paper,total={155mm,230mm},includehead,hcentering]{geometry}
 
 % config toc lof lot
-\RequirePackage{tocloft}
+\RequirePackage[titles]{tocloft}
 \tocloftpagestyle{main}
-\setlength\cftbeforetoctitleskip{0pt}
-\setlength\cftaftertoctitleskip{40pt}
-\renewcommand{\cfttoctitlefont}{\hfill\zihao{3}\heiti}
-\renewcommand{\cftaftertoctitle}{\hfill}
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftchapfont}{\normalfont}
 \renewcommand{\cftchappagefont}{\normalfont}
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{2}
-
-\setlength\cftbeforeloftitleskip{0pt}
-\setlength\cftafterloftitleskip{40pt}
-\renewcommand{\cftloftitlefont}{\hfill\zihao{3}\heiti}
-\renewcommand{\cftafterloftitle}{\hfill}
-
-\setlength\cftbeforelottitleskip{0pt}
-\setlength\cftafterlottitleskip{40pt}
-\renewcommand{\cftlottitlefont}{\hfill\zihao{3}\heiti}
-\renewcommand{\cftafterlottitle}{\hfill}
+\preto\tableofcontents{\cleardoublepage\pdfbookmark[0]{\contentsname}{toc}}
+\preto\listoffigures{\cleardoublepage\pdfbookmark[0]{\listfigurename}{lof}}
+\preto\listoftables{\cleardoublepage\pdfbookmark[0]{\listtablename}{lot}}
 
 % define heading
 \usepackage{fancyhdr}
@@ -308,7 +311,8 @@
 % 使用enumitem宏包配制列表环境
 % 紧凑间距
 \RequirePackage[inline]{enumitem}
-\setlist{nosep}
+\setlist{leftmargin=\parindent, labelwidth=*,noitemsep,itemjoin=\enskip}
+\setlist[enumerate]{label={(\arabic*)}}
 
 % config numbering for equation fig table and so on.
 \AtBeginDocument{%
@@ -318,6 +322,11 @@
   \renewcommand{\thetable}{\thechapter-\arabic{table}}
   \renewcommand{\thealgorithm}{\thechapter-\arabic{algorithm}}
 }
+
+% enclosed number
+\RequirePackage{xunicode-addon}
+\newfontfamily\EnclosedNumbers{ipaexm.ttf}
+\renewcommand{\thefootnote}{\EnclosedNumbers\textcircled\arabic{footnote}}
 
 % draw front pages
 \newtoggle{addcover}
@@ -369,9 +378,9 @@
 \newenvironment{eabstract}
 {%
 	\cleardoublepage
-  \pdfbookmark[0]{\bupt@label@cabstract}{ebstract}
+  \pdfbookmark[0]{\bupt@label@eabstract}{ebstract}
   \begin{center}
-    \begin{minipage}{110mm}
+    \begin{minipage}{120mm}
       \centering
       {\zihao{3}\bfseries\MakeUppercase\bupt@meta@etitle}
       \vskip 20pt
@@ -394,9 +403,10 @@
 {%
   \chapter*{\bupt@label@notations}
   \markboth{\bupt@label@notations}{}
-  \begin{longtable}{lp{120mm}}
+  \pdfbookmark[0]{\bupt@label@notations}{notations}
+  \begin{longtabu}{lX}
 }
-{\end{longtable}}
+{\end{longtabu}}
 
 \newenvironment{acknowledgement}
 {%
@@ -408,7 +418,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\bupt@page@head{北京邮电大学工学博士学位论文}
 \def\bupt@label@covertitle{博士学位论文}
-\def\bupt@label@ecovertitle{Thesis for Doctor Degree}
+\def\bupt@label@ecovertitle{Dissertation for Doctor Degree}
 \def\bupt@label@cmajor{专\hspace{2em}业}
 \def\bupt@label@emajor{Subject}
 
