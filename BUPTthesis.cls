@@ -2,19 +2,24 @@
 \ProvidesClass{BUPTthesis}
 [2018/12/12 v7.0 BUPT graduate thesis LaTeX2e class]
 \RequirePackage{etoolbox}
-\newtoggle{txmath}
-\DeclareOption{txmath}{\toggletrue{txmath}}
-\newtoggle{smallerops}
-\DeclareOption{smallerops}{\toggletrue{smallerops}\toggletrue{txmath}}
-\newtoggle{review}
-\DeclareOption{review}{\toggletrue{review}}
-\newtoggle{chapterbib}
-\DeclareOption{chapterbib}{\toggletrue{chapterbib}}
-% \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
-\newtoggle{gls}
-\DeclareOption{gls}{\toggletrue{gls}}
-\ProcessOptions
+\RequirePackage{kvoptions}
+\RequirePackage{ifthen}
+\SetupKeyvalOptions{family=bupt,prefix=bupt@,setkeys=\kvsetkeys}
+\newcommand{\ekv}[1]{\kvsetkeys{bupt}{#1}}
+\DeclareStringOption[tx]{mathfont}
+\DeclareVoidOption{txmath}{\ekv{mathfont=tx}}
+\DeclareVoidOption{xits}{\ekv{mathfont=xits}}
+\DeclareBoolOption{review}
+\DeclareBoolOption{chapterbib}
+\DeclareBoolOption{gls}
+\ProcessKeyvalOptions*
 
+\newtoggle{gls}
+\ifthenelse{\boolean{bupt@gls}}{\toggletrue{gls}}{}
+\newtoggle{review}
+\ifthenelse{\boolean{bupt@review}}{\toggletrue{review}}{}
+\newtoggle{chapterbib}
+\ifthenelse{\boolean{bupt@chapterbib}}{\toggletrue{chapterbib}}{}
 
 % config ctex
 \LoadClass[a4paper,UTF8,zihao=-4,scheme=chinese,linespread=1.4]{ctexbook}
@@ -56,12 +61,12 @@
 
 % Load packages
 \RequirePackage{amsthm,thmtools}
-\RequirePackage{newtxtext}
-\iftoggle{smallerops}{\PassOptionsToPackage{smallerops}{newtxmath}}{}
-\iftoggle{txmath}{\RequirePackage{newtxmath}}{}
+\ifthenelse{\equal{\bupt@mathfont}{tx}}{
+  \RequirePackage{newtxtext}
+  \RequirePackage[smallerops]{newtxmath}
+  \RequirePackage[scr=euler]{mathalpha}
+}{}
 \RequirePackage{mathtools,amsfonts,amssymb,empheq}
-\RequirePackage{bm}
-\RequirePackage[scr=euler]{mathalpha}
 \RequirePackage{graphicx}
 \RequirePackage[per-mode=repeated-symbol,binary-units=true]{siunitx}
 \RequirePackage{longtable}
@@ -69,6 +74,14 @@
 \RequirePackage{booktabs}
 \RequirePackage{tabu}
 \RequirePackage{emptypage}
+\ifthenelse{\equal{\bupt@mathfont}{xits}}{
+  \RequirePackage{fontspec}
+  \setmainfont{TeX Gyre Termes}
+  \RequirePackage{unicode-math}
+  \setmathfont{XITS Math}
+  \setmathfont[range={cal,bfcal},StylisticSet=1]{XITS Math}
+}{}
+
 
 %caption
 \RequirePackage{caption}
