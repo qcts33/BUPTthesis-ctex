@@ -47,6 +47,7 @@
 \newcommand{\cdegree}[1]{\def\bupt@meta@cdegree{#1}}
 \newcommand{\edegree}[1]{\def\bupt@meta@edegree{#1}}
 \newcommand{\cdiscipline}[1]{\def\bupt@meta@cdiscipline{#1}}
+\newcommand{\etype}[1]{\def\bupt@meta@etype{#1}}
 \newcommand{\cdepartment}[1]{\def\bupt@meta@cdepartment{#1}}
 \newcommand{\edepartment}[1]{\def\bupt@meta@edepartment{#1}}
 \newcommand{\cmajor}[1]{\def\bupt@meta@cmajor{#1}}
@@ -433,7 +434,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\bupt@page@head{北京邮电大学{\bupt@meta@cdiscipline}{\bupt@meta@cdegree}学位论文}
 \def\bupt@label@covertitle{{\bupt@meta@cdegree}学位论文}
-\def\bupt@label@ecovertitle{Dissertation for {\bupt@meta@edegree} Degree}
+\def\bupt@label@ecovertitle{{\bupt@meta@etype} for {\bupt@meta@edegree} Degree}
 \def\bupt@label@cmajor{专\hspace{2em}业}
 \def\bupt@label@emajor{Subject}
 
