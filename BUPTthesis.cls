@@ -128,6 +128,7 @@
   \newcommand{\chapterbib}{\relax}
   \newcommand{\mainbib}{\printbibliography}
 }
+\newcommand{\pubcite}[1]{\AtNextCite{\defcounter{maxnames}{99}}\fullcite{#1}}
 
 % hyperref
 \AtBeginDocument{
