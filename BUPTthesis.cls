@@ -64,12 +64,12 @@
 
 % Load packages
 \RequirePackage{amsthm,thmtools}
+\RequirePackage{mathtools,amsfonts,amssymb,empheq}
 \ifthenelse{\equal{\bupt@mathfont}{tx}}{
   \RequirePackage{newtxtext}
   \RequirePackage[smallerops]{newtxmath}
   \RequirePackage[scr=euler]{mathalpha}
 }{}
-\RequirePackage{mathtools,amsfonts,amssymb,empheq}
 \RequirePackage{graphicx}
 \RequirePackage[per-mode=repeated-symbol,binary-units=true]{siunitx}
 \RequirePackage{longtable}
