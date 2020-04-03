@@ -128,7 +128,11 @@
   \newcommand{\chapterbib}{\relax}
   \newcommand{\mainbib}{\printbibliography}
 }
+\iftoggle{review}{%
+\newcommand{\pubcite}[1]{\AtNextCitekey{\clearname{author}}\fullcite{#1}}
+}{%
 \newcommand{\pubcite}[1]{\AtNextCite{\defcounter{maxnames}{99}}\fullcite{#1}}
+}
 
 % hyperref
 \AtBeginDocument{
