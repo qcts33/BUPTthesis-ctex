@@ -54,7 +54,7 @@
   \end{center}
   \vspace{0.5cm}
   \begin{center}
-    \zihao{4}
+    \zihao{4}\bsong
     \bupt@meta@cdate
   \end{center}
 }
@@ -69,17 +69,14 @@
     \vspace{0.5cm}
     \includegraphics[width=3.09cm]{logo/buptseal}
   \end{center}
-  \vspace{0.5cm}
+  % \vspace{0.5cm}
   \begin{center}
-    \zihao{-1} %english title size
-    \bfseries
-    \scshape
-    \begin{minipage}{14\ccwd}
-      \centering
-      \bupt@meta@etitle
-    \end{minipage}
+    \zihao{2}
+    {\bfseries
+    \MakeUppercase
+    \bupt@meta@etitle}
   \end{center}
-  \vspace{1cm}
+  \vspace{1.5cm}
   \begin{center}
     \zihao{4}
     \bfseries
@@ -98,15 +95,12 @@
   \end{center}
   \vspace{0.5cm}
   \begin{center}
-    \zihao{4}
+    \zihao{4}\bfseries
     \bupt@meta@edate
   \end{center}
 }
 
 \newcommand{\makedeclaration}{\bupt@makedeclauth}
-\newcommand\bupt@underline[2][6em]{%
-  \hskip1pt\underline{\hb@xt@ #1{\hss#2\hss}}\hskip3pt%
-}
 %% 独创性声明与授权说明
 \newcommand{\bupt@declaration}{%
   \begin{center}
@@ -115,13 +109,9 @@
   \par{%
     \bupt@declaration@body
   }
-  \vskip1.2cm
+  \vspace{1.2cm}
   \begin{center}
-    \setlength\extrarowheight{5pt}
-      \begin{tabular}{lp{38mm}p{5mm}lp{38mm}}
-        \bupt@label@authorsigniture & & & \bupt@label@date&\\
-        \cline{2-2} \cline{5-5}
-      \end{tabular}
+    \bupt@label@authorsigniture\uline{\hspace{10\ccwd}}\hspace{3\ccwd}\bupt@label@date\uline{\hspace{10\ccwd}}\par
   \end{center}
 }
 \newcommand{\bupt@authorization}{%
@@ -131,15 +121,10 @@
   \par{%
     \bupt@authorization@body
   }
-  \vskip1.2cm
+  \vspace{1.2cm}
   \begin{center}
-    \setlength\extrarowheight{5pt}
-      \begin{tabular}{lp{38mm}p{5mm}lp{38mm}}
-        \bupt@label@authorsigniture & & & \bupt@label@date&\\
-        \cline{2-2} \cline{5-5}
-        \bupt@label@supervisorsigniture & & & \bupt@label@date&\\
-        \cline{2-2} \cline{5-5}
-      \end{tabular}
+    \bupt@label@authorsigniture\uline{\hspace{10\ccwd}}\hspace{3\ccwd}\bupt@label@date\uline{\hspace{10\ccwd}}\par
+    \bupt@label@supervisorsigniture\uline{\hspace{10\ccwd}}\hspace{3\ccwd}\bupt@label@date\uline{\hspace{10\ccwd}}
   \end{center}
 }
 \newcommand{\bupt@makedeclauth}{%
