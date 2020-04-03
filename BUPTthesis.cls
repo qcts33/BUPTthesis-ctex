@@ -41,7 +41,20 @@
 % \AtEndOfClass{\input{BUPTthesis.cfg}}
 
 % define names
+\iftoggle{review}
+{
+\newcommand{\studentid}[1]{\def\bupt@meta@studentid{\hfill}}
+\newcommand{\cauthor}[1]{\def\bupt@meta@cauthor{\hfill}}
+\newcommand{\eauthor}[1]{\def\bupt@meta@eauthor{\hfill}}
+\newcommand{\csupervisor}[1]{\def\bupt@meta@csupervisor{\hfill}}
+\newcommand{\esupervisor}[1]{\def\bupt@meta@esupervisor{\hfill}}
+}{
 \newcommand{\studentid}[1]{\def\bupt@meta@studentid{#1}}
+\newcommand{\cauthor}[1]{\def\bupt@meta@cauthor{#1}}
+\newcommand{\eauthor}[1]{\def\bupt@meta@eauthor{#1}}
+\newcommand{\csupervisor}[1]{\def\bupt@meta@csupervisor{#1}}
+\newcommand{\esupervisor}[1]{\def\bupt@meta@esupervisor{#1}}
+}
 \newcommand{\ctitle}[1]{\def\bupt@meta@ctitle{#1}}
 \newcommand{\etitle}[1]{\def\bupt@meta@etitle{#1}}
 \newcommand{\cdegree}[1]{\def\bupt@meta@cdegree{#1}}
@@ -52,10 +65,6 @@
 \newcommand{\edepartment}[1]{\def\bupt@meta@edepartment{#1}}
 \newcommand{\cmajor}[1]{\def\bupt@meta@cmajor{#1}}
 \newcommand{\emajor}[1]{\def\bupt@meta@emajor{#1}}
-\newcommand{\cauthor}[1]{\def\bupt@meta@cauthor{#1}}
-\newcommand{\eauthor}[1]{\def\bupt@meta@eauthor{#1}}
-\newcommand{\csupervisor}[1]{\def\bupt@meta@csupervisor{#1}}
-\newcommand{\esupervisor}[1]{\def\bupt@meta@esupervisor{#1}}
 \newcommand{\ckeywords}[1]{\def\bupt@meta@ckeywords{#1}}
 \newcommand{\ekeywords}[1]{\def\bupt@meta@ekeywords{#1}}
 \newcommand{\cdate}[1]{\def\bupt@meta@cdate{#1}}
@@ -363,7 +372,7 @@
 	\renewcommand\maketitle{%
 	 \makechinesetitle
 	 \makeenglishtitle
-	 \makedeclaration
+	 \iftoggle{review}{\cleardoublepage}{\makedeclaration}
   }
   \toggletrue{addcover}
 }{}
