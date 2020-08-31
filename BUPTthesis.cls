@@ -22,7 +22,7 @@
 \ifthenelse{\boolean{bupt@chapterbib}}{\toggletrue{chapterbib}}{}
 
 % config ctex
-\LoadClass[a4paper,UTF8,zihao=-4,scheme=chinese,linespread=1.4]{ctexbook}
+\LoadClass[a4paper,UTF8,zihao=-4,scheme=chinese,linespread=1.4,fntef]{ctexbook}
 \ctexset{%
   listfigurename = \bupt@listfigurename,
   listtablename  = \bupt@listtablename,
@@ -82,7 +82,6 @@
 \RequirePackage{graphicx}
 \RequirePackage[per-mode=repeated-symbol,binary-units=true]{siunitx}
 \RequirePackage{longtable}
-\RequirePackage{ulem}
 \RequirePackage{booktabs}
 \RequirePackage{tabu}
 \RequirePackage{emptypage}
@@ -130,12 +129,12 @@
 ]{biblatex}
 \iftoggle{chapterbib}
 {%
-  \newcommand{\chapterbib}{\printbibliography[heading=subbibliography]}
+  \newcommand{\chapterbib}{\printbibliography[heading=subbibintoc]}
   \newcommand{\mainbib}{\relax}
 }
 {%
   \newcommand{\chapterbib}{\relax}
-  \newcommand{\mainbib}{\printbibliography}
+  \newcommand{\mainbib}{\printbibliography[heading=bibintoc]}
 }
 \iftoggle{review}{%
 \newcommand{\pubcite}[1]{\AtNextCitekey{\clearname{author}}\fullcite{#1}}
